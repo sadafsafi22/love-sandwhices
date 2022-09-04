@@ -20,20 +20,22 @@ def get_sales_data():
     """
     Get sales figure  from the user
     """
-    
-    print("Please enter sales data from the last market.")
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 10,20,30,40,50,60\n")
+    while True:
+        print("Please enter sales data from the last market.")
+        print("Data should be six numbers, separated by commas.")
+        print("Example: 10,20,30,40,50,60\n")
 
-    data_str = input("Enter data here: ")
-    # print(f"The Data provide is {data_str}")
-    sales_data = data_str.split(",")
-    validate_data(sales_data)
+        data_str = input("Enter data here: ")
+        # print(f"The Data provide is {data_str}")
+        sales_data = data_str.split(",")
+        
+        if(validate_data(sales_data)):
+            print("Data is valid!")
+            break
     
 
 
 def validate_data(values):
-   
     """
     Inside the try, converts all string values into integers.
     Raise ValueError if strings cannot be converted in to int,
@@ -47,6 +49,9 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, Please try again.\n")
+        return False
+        
+    return True
 
 
 get_sales_data()
